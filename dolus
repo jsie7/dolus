@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+BLINK=$(tput blink)
+NORMAL=$(tput sgr0)
+
+DOLUS_TEXT="${USER}, you have been hacked! Wire 0.02 Bitcoins to the following address to unlock your computer:\n"
+
+function dolus() {
+    clear
+    printf '\n%.0s' {1..10}
+    printf "${GREEN} ${DOLUS_TEXT}" | pv -qL $[7+(-1 + RANDOM%3)]
+    sleep 1.5 
+    printf "${RED} ${BLINK} April Fools! ${NORMAL}"
+    sleep 4
+    clear
+    curl parrot.live
+}
+
+if [[ -z $1 ]]; then
+    dolus
+    exit 0
+fi
+
+while [[ -n ${1:-} ]]; do
+    dolus
+    exit 0
+done
+
